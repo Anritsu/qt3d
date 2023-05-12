@@ -425,7 +425,7 @@ struct SubRangeSorter<QSortPolicy::Texture>
                     ++identicalTextureCount;
             }
 
-            return identicalTextureCount < smallestVector.size();
+            return identicalTextureCount < static_cast<int>(smallestVector.size());
         });
 #endif
     }
@@ -537,18 +537,18 @@ void RenderView::sort()
     const std::vector<size_t> &indices = m_renderCommandDataView->indices;
     const size_t commandSize = indices.size();
 
-    while (i < commandSize) {
+    while (i < static_cast<int>(commandSize)) {
         size_t j = i;
 
         // Advance while commands share the same shader
-        while (i < commandSize &&
+        while (i < static_cast<int>(commandSize) &&
                commands[indices[j]].m_glShader == commands[indices[i]].m_glShader)
             ++i;
 
         if (i - j > 0) { // Several commands have the same shader, so we minimize uniform changes
             PackUniformHash cachedUniforms = commands[indices[j++]].m_parameterPack.uniforms();
 
-            while (j < i) {
+            while (static_cast<int>(j) < i) {
                 // We need the reference here as we are modifying the original container
                 // not the copy
                 PackUniformHash &uniforms = commands[indices[j]].m_parameterPack.m_uniforms;

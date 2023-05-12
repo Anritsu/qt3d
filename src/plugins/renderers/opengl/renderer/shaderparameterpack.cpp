@@ -73,7 +73,7 @@ void ShaderParameterPack::setUniform(const int glslNameId, const UniformValue &v
 
 void ShaderParameterPack::setTexture(const int glslNameId, int uniformArrayIndex, Qt3DCore::QNodeId texId)
 {
-    for (int t=0; t<m_textures.size(); ++t) {
+    for (int t=0; t< static_cast<int>(m_textures.size()); ++t) {
         if (m_textures[t].glslNameId != glslNameId || m_textures[t].uniformArrayIndex != uniformArrayIndex)
             continue;
 

@@ -44,6 +44,7 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QRectF>
 #include <graphicscontext_p.h>
 #include <renderview_p.h>
 #include <rendercommand_p.h>
@@ -71,8 +72,9 @@ QJsonValue typeToJsonValue(const Type &t)
     return QJsonValue();
 }
 
+#if 0
 template<>
-QJsonObject typeToJsonObj<QRectF>(const QRectF &rect)
+QJsonObject etypeToJsonObj<QRectF>(const QRectF &rect)
 {
     QJsonObject obj;
 
@@ -83,6 +85,7 @@ QJsonObject typeToJsonObj<QRectF>(const QRectF &rect)
 
     return obj;
 }
+#endif
 
 template<>
 QJsonValue typeToJsonValue<QRectF>(const QRectF &rect)
